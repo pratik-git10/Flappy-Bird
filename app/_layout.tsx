@@ -15,7 +15,7 @@ export default function RootLayout() {
           headerTitle: "Login",
         }}
       />
-      <Stack.Screen name="game" />
+      <Stack.Screen name="game" options={{}} />
     </Stack>
   );
 }
