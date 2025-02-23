@@ -5,11 +5,10 @@ export default function Index() {
   return (
     <View style={styles.conatiner}>
       <Text style={styles.headingText}>FlappY</Text>
-      <TouchableOpacity onPress={() => router.push("/login")}>
-        <Text>Login</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => router.push("/game")}>
-        <Text>Game</Text>
+      <TouchableOpacity
+        style={styles.playbtn}
+        onPress={() => router.push("/game")}>
+        <Text>Play</Text>
       </TouchableOpacity>
     </View>
   );
@@ -18,11 +17,19 @@ export default function Index() {
 const styles = StyleSheet.create({
   conatiner: {
     flex: 1,
-    marginTop: 40,
+    marginTop: 100,
     alignItems: "center",
   },
   headingText: {
+    color: "gray",
     fontSize: 40,
     fontWeight: "bold",
+  },
+  playbtn: {
+    paddingVertical: 5,
+    paddingHorizontal: 20,
+    borderWidth: 1,
+    marginTop: 20,
+    borderRadius: 5,
   },
 });

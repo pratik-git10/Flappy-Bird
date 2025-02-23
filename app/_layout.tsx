@@ -6,7 +6,8 @@ export default function RootLayout() {
       <Stack.Screen
         name="index"
         options={{
-          headerTitle: "Flappy",
+          headerShown: false,
+          statusBarHidden: true,
         }}
       />
       <Stack.Screen
@@ -15,7 +16,13 @@ export default function RootLayout() {
           headerTitle: "Login",
         }}
       />
-      <Stack.Screen name="game" options={{}} />
+      <Stack.Screen
+        name="game"
+        options={{
+          // headerShown: false,
+          statusBarHidden: true,
+        }}
+      />
     </Stack>
   );
 }
