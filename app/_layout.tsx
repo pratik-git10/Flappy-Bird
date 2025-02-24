@@ -18,10 +18,10 @@ export default function RootLayout() {
       />
       <Stack.Screen
         name="game"
-        options={{
-          // headerShown: false,
-          statusBarHidden: true,
-        }}
+        // options={{
+        //   headerShown: false,
+        //   statusBarHidden: true,
+        // }}
       />
     </Stack>
   );
