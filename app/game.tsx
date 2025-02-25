@@ -27,6 +27,7 @@ import {
   GestureDetector,
   Gesture,
 } from "react-native-gesture-handler";
+import { useRouter } from "expo-router";
 
 const GRAVITY = 1000;
 const JUMP_FORCE = -500;
@@ -176,6 +177,8 @@ const App = () => {
     runOnJS(setScore)(0);
   };
 
+  const router = useRouter();
+
   const gesture = Gesture.Tap().onStart(() => {
     if (gameOver.value) {
       // restart
@@ -210,6 +213,25 @@ const App = () => {
   };
 
   const font = matchFont(fontStyle);
+
+  const handleGameOver = () => {
+    runOnJS(() => {
+      setTimeout(() => {
+        router.push(`/end?score=${score}`);
+      }, 500); // Small delay before navigating
+    })();
+  };
+
+  useAnimatedReaction(
+    () => gameOver.value,
+    (currentValue, previousValue) => {
+      if (currentValue && !previousValue) {
+        cancelAnimation(pipeX);
+        runOnJS(handleGameOver)(); // Call handleGameOver only once
+      }
+    }
+  );
+
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <GestureDetector gesture={gesture}>
@@ -245,7 +267,7 @@ const App = () => {
 
           {/* Bird */}
           <Group transform={birdTransform} origin={birdOrigin}>
-            <Image image={bird} y={birdY} x={birdX} width={64} height={48} />
+            <Image image={bird} y={birdY} x={birdX} width={44} height={38} />
           </Group>
 
           {/* Score */}
